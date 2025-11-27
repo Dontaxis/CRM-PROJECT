@@ -39,15 +39,33 @@ crm-project/
 
 ## Getting Started
 
+### GitHub Codespaces (Recommended)
+
+1. Click the **Code** button on GitHub
+2. Select **Codespaces** tab
+3. Click **Create codespace on main** (or your branch)
+4. Once it loads, run the quickstart:
+   ```bash
+   ./quickstart.sh
+   ```
+
+**Why Codespaces?** Everything is pre-configured - Python, Git, and a full development environment in your browser.
+
+### Local Setup
+
 ```bash
+# Clone the repo
+git clone <your-repo-url>
+cd CRM-PROJECT
+
 # Run the tests to verify everything works
-python test_database.py
+python3 test_database.py
 
 # Run the demo to see CRUD operations in action
-python demo.py
+python3 demo.py
 
 # Initialize the database manually
-python database.py
+python3 database.py
 ```
 
 ## Database Schema

@@ -1,0 +1,8 @@
+# CRM Learning Project - Python Dependencies
+# This project uses only Python standard library modules
+# No external packages required!
+
+# For future development, you might add:
+# pytest==7.4.3  # For more advanced testing
+# black==23.12.1  # Code formatter
+# mypy==1.7.1     # Type checker
