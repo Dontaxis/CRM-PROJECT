@@ -30,44 +30,16 @@ class Database:
         """Create all necessary tables for the CRM system."""
         cursor = self.connection.cursor()
 
-        # Customers table
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS customers (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                company_name TEXT NOT NULL,
-                industry TEXT,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                notes TEXT
-            )
-        """)
-
-        # Contacts table (many contacts can belong to one customer)
+        # Contacts table - simplified version for learning
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS contacts (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                customer_id INTEGER NOT NULL,
-                first_name TEXT NOT NULL,
-                last_name TEXT NOT NULL,
+                name TEXT NOT NULL,
                 email TEXT,
                 phone TEXT,
-                role TEXT,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (customer_id) REFERENCES customers(id)
-            )
-        """)
-
-        # Interactions table (track all customer interactions)
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS interactions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                customer_id INTEGER NOT NULL,
-                contact_id INTEGER,
-                interaction_type TEXT NOT NULL,
-                subject TEXT,
+                company TEXT,
                 notes TEXT,
-                interaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (customer_id) REFERENCES customers(id),
-                FOREIGN KEY (contact_id) REFERENCES contacts(id)
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 

@@ -23,23 +23,43 @@ crm-project/
 ├── README.md           # This file
 ├── .gitignore         # Python and database files to exclude
 ├── database.py        # Database setup and connection
-├── models.py          # Data structures (customers, contacts, interactions)
-└── main.py            # Entry point and CLI interface
+├── models.py          # Contact data model
+├── crud.py            # CRUD operations for contacts
+├── test_database.py   # Tests to verify database operations
+├── demo.py            # Simple demo of the CRM in action
+└── main.py            # Entry point and CLI interface (WIP)
 ```
 
-## Core Features (Planned)
+## Core Features
 
-- **Customer Management**: Store and manage customer information
-- **Contact Tracking**: Keep track of multiple contacts per customer
-- **Interaction History**: Log all interactions with customers
-- **Basic Reporting**: View customer activity and history
+- **Contact Management**: Store and manage contact information (name, email, phone, company, notes)
+- **CRUD Operations**: Create, Read, Update, Delete contacts
+- **Search Functionality**: Find contacts by name or company
+- **SQLite Database**: Simple, file-based database perfect for learning
 
 ## Getting Started
 
 ```bash
-# Run the CRM application
-python main.py
+# Run the tests to verify everything works
+python test_database.py
+
+# Run the demo to see CRUD operations in action
+python demo.py
+
+# Initialize the database manually
+python database.py
 ```
+
+## Database Schema
+
+**Contacts Table:**
+- `id` - Auto-incrementing primary key
+- `name` - Contact's full name (required)
+- `email` - Email address (optional)
+- `phone` - Phone number (optional)
+- `company` - Company name (optional)
+- `notes` - Additional notes (optional)
+- `created_at` - Timestamp of creation
 
 ## Learning Journey
 
