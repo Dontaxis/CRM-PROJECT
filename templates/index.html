@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}All Contacts - CRM System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>All Contacts</h1>
+    <div class="page-actions">
+        <form action="{{ url_for('search') }}" method="get" class="search-form">
+            <input type="text" name="q" placeholder="Search contacts..." class="search-input">
+            <button type="submit" class="btn-secondary">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="stats">
+    <p>Total contacts: <strong>{{ total_count }}</strong></p>
+</div>
+
+{% if contacts %}
+<div class="table-container">
+    <table class="contacts-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Company</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('view_contact', contact_id=contact.id) }}" class="contact-name">
+                        {{ contact.name }}
+                    </a>
+                </td>
+                <td>{{ contact.email or '-' }}</td>
+                <td>{{ contact.phone or '-' }}</td>
+                <td>{{ contact.company or '-' }}</td>
+                <td class="actions">
+                    <a href="{{ url_for('view_contact', contact_id=contact.id) }}" class="btn-view">View</a>
+                    <a href="{{ url_for('edit_contact', contact_id=contact.id) }}" class="btn-edit">Edit</a>
+                    <form action="{{ url_for('delete_contact', contact_id=contact.id) }}" method="post" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete {{ contact.name }}?');">
+                        <button type="submit" class="btn-delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No contacts found.</p>
+    <a href="{{ url_for('add_contact') }}" class="btn-primary">Add your first contact</a>
+</div>
+{% endif %}
+{% endblock %}

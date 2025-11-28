@@ -1,6 +1,7 @@
 # CRM Learning Project - Python Dependencies
-# This project uses only Python standard library modules
-# No external packages required!
+
+# Web framework for the UI
+Flask==3.0.0
 
 # For future development, you might add:
 # pytest==7.4.3  # For more advanced testing

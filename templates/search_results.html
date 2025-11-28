@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - CRM System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Search Results</h1>
+    <p>Searching for: <strong>"{{ query }}"</strong></p>
+</div>
+
+{% if results %}
+<div class="stats">
+    <p>Found <strong>{{ results|length }}</strong> contact(s)</p>
+</div>
+
+<div class="table-container">
+    <table class="contacts-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Company</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in results %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('view_contact', contact_id=contact.id) }}" class="contact-name">
+                        {{ contact.name }}
+                    </a>
+                </td>
+                <td>{{ contact.email or '-' }}</td>
+                <td>{{ contact.phone or '-' }}</td>
+                <td>{{ contact.company or '-' }}</td>
+                <td class="actions">
+                    <a href="{{ url_for('view_contact', contact_id=contact.id) }}" class="btn-view">View</a>
+                    <a href="{{ url_for('edit_contact', contact_id=contact.id) }}" class="btn-edit">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No contacts found matching "{{ query }}"</p>
+    <a href="{{ url_for('index') }}" class="btn-secondary">Back to all contacts</a>
+</div>
+{% endif %}
+
+<div class="back-link">
+    <a href="{{ url_for('index') }}">&larr; Back to all contacts</a>
+</div>
+{% endblock %}
